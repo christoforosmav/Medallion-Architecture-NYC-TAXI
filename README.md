@@ -3,7 +3,6 @@
 An end-to-end **Batch ETL Pipeline** implemented on **Azure Databricks** using **PySpark** and **SQL**, processing over 11 million rows of real-world urban data. The project uncovers hidden correlations between New York City transit patterns and historical weather conditions.
 
 ## 🏗️ Project Architecture (Medallion Framework)
-The data pipeline implements the industry-standard Medallion Architecture to transition data through various stages of refinement:
 
 1. **Bronze Layer (Raw Ingestion):** Ingested raw, immutable formats into Azure Databricks Volumes. This includes high-frequency NYC Yellow Taxi trip logs (Parquet format) and historical weather records (CSV format) retrieved from the Open-Meteo REST API.
 2. **Silver Layer (Cleaning & Transformation):** Performed data quality enforcement and deduplication using PySpark. Eliminated over **3.2 million anomalous records** (zero distances, invalid passenger counts, and negative fares), cast column data types, and normalized timestamps to standard date formats.
@@ -24,7 +23,7 @@ The Gold layer was queried using Spark SQL to evaluate core business hypotheses 
 ### 🔍 Hypothesis 1: Weather Impact on Passenger Tipping Patterns
 * **Core Objective:** Investigate whether inclement weather increases passenger gratitude due to the difficulty of securing a carriage, thereby driving higher average tips.
 
-#### 📈 Empirical Findings:
+#### 📈 Findings:
 - **No Rain (Dry Weather):** 3.75M rides | Avg Tip: **$3.64**
 - **Drizzle / Light Rain:** 216K rides | Avg Tip: **$3.62**
 - **Storm / Heavy Rain:** 1.88M rides | Avg Tip: **$3.57**
@@ -33,10 +32,10 @@ The Gold layer was queried using Spark SQL to evaluate core business hypotheses 
 
 ---
 
-### 📍 Hypothesis 2: Weather Impact on Urban Traffic Velocity (The Traffic Paradox)
+### 🔍 Hypothesis 2: Weather Impact on Urban Traffic Velocity (The Traffic Paradox)
 * **Core Objective:** Determine if severe precipitation paralyzes New York City's infrastructure, leading to extended trip durations and lower average speeds.
 
-#### 📈 Empirical Findings:
+#### 📈 Findings:
 - **Dry Weather:** 3.67M rides | Avg Duration: **17.76 mins** | Avg Speed: **10.41 mph**
 - **Rain / Snow:** 3.97M rides | Avg Duration: **16.95 mins** | Avg Speed: **11.19 mph**
 
